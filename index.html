@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Free document editor, converter, and viewer tools with downloadable output.">
+  <meta name="keywords" content="PDF to Word, Word to PDF, Document Editor, Viewer, Free Tools">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DocTools – Edit, View & Convert Docs</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="ads.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>📄 DocTools</h1>
+    <p>All-in-one editor, viewer & converter with download & SEO support</p>
+  </header>
+
+  <main>
+    <form action="/convert" method="POST" enctype="multipart/form-data">
+      <label>Upload Document:</label>
+      <input type="file" name="docfile" accept=".pdf,.docx,.txt" required />
+      <select name="target">
+        <option value="pdf">Convert to PDF</option>
+        <option value="docx">Convert to DOCX</option>
+        <option value="txt">Convert to TXT</option>
+      </select>
+      <button type="submit">Convert & Download</button>
+    </form>
+
+    <section>
+      <h2>🖋️ Online Editor</h2>
+      <textarea rows="10" cols="60" placeholder="Edit your text here..."></textarea>
+      <button onclick="downloadText()">Download as .txt</button>
+    </section>
+
+    <section>
+      <h2>📑 Viewer</h2>
+      <form action="/view" method="POST" enctype="multipart/form-data">
+        <input type="file" name="viewfile" accept=".pdf,.docx,.txt" required>
+        <button type="submit">View Document</button>
+      </form>
+    </section>
+
+    <!-- AdSense Placeholder -->
+    <div id="ad-space">
+      <!-- Google AdSense Code -->
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 DocTools | Free and Powerful Document Tools</p>
+  </footer>
+
+  <script>
+    function downloadText() {
+      const content = document.querySelector("textarea").value;
+      const blob = new Blob([content], { type: "text/plain" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "edited-text.txt";
+      a.click();
+    }
+  </script>
+</body>
+</html>
